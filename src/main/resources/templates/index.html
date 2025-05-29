@@ -255,10 +255,10 @@
                 chartInstance = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: anos,
+                        labels: anos.reverse(),
                         datasets: [{
                             label: 'Preço (R$)',
-                            data: precos,
+                            data: precos.reverse(),
                             fill: false,
                             borderColor: 'rgba(75, 192, 192, 1)',
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
