@@ -1,22 +1,36 @@
 package simon.projetos.pessoal.car.price_tracking.service;
 
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
 import simon.projetos.pessoal.car.price_tracking.entity.Marca;
 import simon.projetos.pessoal.car.price_tracking.repository.MarcaRepository;
 import simon.projetos.pessoal.car.price_tracking.service.coleta.DataFetcher;
 import simon.projetos.pessoal.car.price_tracking.service.coleta.JsonDataFetcher;
+import simon.projetos.pessoal.car.price_tracking.util.MockLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class MarcaService {
     private DataFetcher dataFetcher;
     private final MarcaRepository marcaRepository;
+    private final JsonNode mock = MockLoader.loadMock();
 
     public MarcaService() {
         this.dataFetcher = new JsonDataFetcher();
         this.marcaRepository = new MarcaRepository();
         gerarMarcasDeCarros();
+    }
+
+    public List<Marca> getMarcas() {
+        List<Marca> marcas = new ArrayList<>();
+        for (JsonNode node : mock.get("marcas")) {
+            marcas.add(new Marca(node.get("codigo").asText(), node.get("nome").asText()));
+        }
+        return marcas;
     }
 
     private void gerarMarcasDeCarros() {
@@ -29,9 +43,9 @@ public class MarcaService {
         marcaRepository.addMarca(marca3);
     }
 
-    public List<Marca> getMarcas(){
-        return marcaRepository.getMarcas();
-    }
+    // public List<Marca> getMarcas(){
+    //     return marcaRepository.getMarcas();
+    // }
 
     public Marca getMarcaByCodigo(String codigo){
         for (Marca i : marcaRepository.getMarcas()) {
