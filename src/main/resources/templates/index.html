@@ -1,47 +1,175 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <title>Car Price Tracking</title>
+    <title>Car Price Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+        }
+
+        .sidebar {
+            min-height: 100vh;
+            background-color: #343a40;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2.5rem 1rem;
+        }
+
+        .sidebar-header {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .menu-text {
+            font-size: 0.875rem;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        .nav-links a {
+            color: white;
+            display: block;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-links a:hover {
+            background-color: #495057;
+        }
+
+        .main-content {
+            padding: 2rem;
+        }
+
+        .form-section {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .sidebar-footer {
+            font-size: 0.875rem;
+            text-align: left;
+            padding-top: 1rem;
+            color: #ced4da;
+        }
+    </style>
 </head>
 <body>
-<div style="width: 50%;margin: auto;">
-    <h1>Seja bem vindo!</h1>
-    <br>
 
-    <label for="marcas">Marca:</label>
-    <select class="form-select" name="marcas" id="marcas">
-        <option selected value="0">-- Selecione uma marca --</option>
-        <option th:each="marca : ${marcas}"
-                th:value="${marca.getCodigo()}"
-                th:text="${marca.getNome()}">
-        </option>
-    </select>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-3 col-lg-2 sidebar d-md-flex flex-column">
+            <div>
+                <div class="sidebar-header">
+                    <h6 class="ms-3">CAR PRICE TRACKER</h6>
+                    <span class="ms-3 mt-5 d-block menu-text">Menu</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#"><i class="fas fa-home me-2"></i>Início</a>
+                    <a href="#"><i class="fas fa-car me-2"></i>Marcas</a>
+                    <a href="#"><i class="fas fa-cogs me-2"></i>Modelos</a>
+                    <a href="#"><i class="fas fa-chart-line me-2"></i>Relatórios</a>
+                </div>
+            </div>
 
-    <br>
+            <div class="sidebar-footer mt-auto">
+                &copy; 2025 Car Price Tracker
+            </div>
+        </nav>
 
-    <label for="modelos">Modelo:</label>
-    <select class="form-select" name="modelos" id="modelos" disabled>
-        <option selected value="0">-- Selecione um modelo --</option>
-    </select>
+        <!-- Conteúdo principal -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">Início</h2>
+                <span class="text-muted">Bem-vindo!</span>
+            </div>
 
-    <button class="btn btn-primary" id="submeter_pesquisa" onclick="gerarTabelaFiltrada()">Submeter</button>
+            <!-- Formulário -->
+            <div class="d-flex justify-content-center mt-4">
+                <div class="card shadow-sm rounded-4 w-100" style="max-width: 80%;">
+                    <div class="card-body">
+                        <h4 class="mb-4"><i class="fas fa-search me-2 text-secondary"></i>Buscar Carros</h4>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-5">
+                                    <label for="marcas" class="form-label">Marca</label>
+                                    <select class="form-select" id="marcas" name="marcas">
+                                        <option selected value="0">-- Selecione uma marca --</option>
+                                        <option th:each="marca : ${marcas}"
+                                                th:value="${marca.getCodigo()}"
+                                                th:text="${marca.getNome()}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="modelos" class="form-label">Modelo</label>
+                                    <select class="form-select" id="modelos" name="modelos" disabled>
+                                        <option selected value="0">-- Selecione um modelo --</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 mt-auto">
+                                    <button class="btn btn-primary" id="submeter_pesquisa" type="button" onclick="gerarTabelaFiltrada()">
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-    <table class="table table-striped" id="table-veiculos" style="display: none">
-        <thead>
-            <tr>
-                <th>Codigo</th>
-                <th>Nome</th>
-                <th>Valor</th>
-                <th>Combustível</th>
-            </tr>
-        </thead>
-        <tbody class="table-group-divider" id="tabela-veiculos-content">
-        </tbody>
-    </table>
+            <!-- Tabela -->
+            <div class="d-flex justify-content-center mt-4" id="tabela-veiculos-card" style="display: none;">
+                <div class="card shadow-sm rounded-4 w-100" style="max-width: 80%;">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0 table-striped">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nome</th>
+                                        <th>Valor</th>
+                                        <th>Combustível</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabela-veiculos-content"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico -->
+            <div class="d-flex justify-content-center mt-4" id="grafico-veiculos-card" style="display: none;">
+                <div class="card shadow-sm rounded-4 w-100" style="max-width: 80%;">
+                    <div class="card-body">
+                        <h5 class="mb-3"><i class="fas fa-chart-bar me-2 text-secondary"></i>Preço por Ano</h5>
+                        <canvas id="graficoAnoPreco" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>
 
+<!-- Scripts -->
 <script>
     document.getElementById('marcas').addEventListener('change', function () {
         const marcaCodigo = this.value;
@@ -70,49 +198,90 @@
                 modeloSelect.disabled = true;
             });
     });
+
+    let chartInstance = null;
+
     function gerarTabelaFiltrada() {
         const marcaSelect = document.getElementById('marcas');
         const modeloSelect = document.getElementById('modelos');
-        const tablebody = document.getElementById('table-veiculos');
-        const tableContent = document.getElementById('tabela-veiculos-content');
+        const tableCard = document.getElementById('tabela-veiculos-card');
+        const tableBody = document.getElementById('tabela-veiculos-content');
+        const graficoCard = document.getElementById('grafico-veiculos-card');
+        const canvas = document.getElementById('graficoAnoPreco');
 
         if (marcaSelect.value === "0" || modeloSelect.value === "0") {
-            tablebody.style.display = "none";
+            tableCard.style.display = "none";
+            graficoCard.style.display = "none";
             return;
         }
 
-        fetch('/veiculosModelo/'+modeloSelect.value)
+        fetch('/veiculosModelo/' + modeloSelect.value)
             .then(response => response.json())
             .then(data => {
+                tableBody.innerHTML = "";
+                const anos = [];
+                const precos = [];
+
                 data.forEach(veiculo => {
-                    const table_line = document.createElement('tr');
+                    const tr = document.createElement('tr');
 
-                    const td_codigo = document.createElement('td');
-                    td_codigo.innerHTML = veiculo.codigoFipe;
+                    // Formata valor para moeda brasileira
+                    const valorFormatado = veiculo.valor.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                    });
 
-                    const td_nome = document.createElement('td');
-                    td_nome.innerHTML = veiculo.modelo.nome + " - " + veiculo.ano;
+                    tr.innerHTML = `
+                        <td>${veiculo.codigoFipe}</td>
+                        <td>${veiculo.modelo.nome} - ${veiculo.ano}</td>
+                        <td>${valorFormatado}</td>
+                        <td>${veiculo.combustivel}</td>
+                    `;
+                    tableBody.appendChild(tr);
 
-                    const td_combustivel = document.createElement('td');
-                    td_combustivel.innerHTML = veiculo.combustivel;
-
-                    const td_valor = document.createElement('td');
-                    td_valor.innerHTML = veiculo.valor;
-
-                    table_line.appendChild(td_codigo);
-                    table_line.appendChild(td_nome);
-                    table_line.appendChild(td_valor);
-                    table_line.appendChild(td_combustivel);
-
-                    tableContent.appendChild(table_line);
+                    anos.push(veiculo.ano);
+                    precos.push(veiculo.valor);
                 });
-                tablebody.style.display = "block";
+
+
+                tableCard.style.display = "block";
+                graficoCard.style.display = "block";
+
+                if (chartInstance) {
+                    chartInstance.destroy();
+                }
+
+                const ctx = canvas.getContext('2d');
+                chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: anos,
+                        datasets: [{
+                            label: 'Preço (R$)',
+                            data: precos,
+                            fill: false,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            tension: 0.2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
             })
             .catch(error => {
-                console.error('Erro ao buscar veiculos:', error);
-                tablebody.style.display = "none"
+                console.error('Erro ao buscar veículos:', error);
+                tableCard.style.display = "none";
+                graficoCard.style.display = "none";
             });
     }
 </script>
+
 </body>
 </html>

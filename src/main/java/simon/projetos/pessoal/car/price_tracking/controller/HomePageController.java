@@ -3,7 +3,6 @@ package simon.projetos.pessoal.car.price_tracking.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import simon.projetos.pessoal.car.price_tracking.entity.Marca;
@@ -22,11 +21,21 @@ import java.util.List;
 
 @RestController
 public class HomePageController {
-    MarcaService marcaService = new MarcaService();
-    ModeloService modeloService = new ModeloService(marcaService);
-    VeiculoService veiculoService = new VeiculoService(modeloService);
+    // MarcaService marcaService = new MarcaService();
+    // ModeloService modeloService = new ModeloService(marcaService);
+    // VeiculoService veiculoService = new VeiculoService(modeloService);
 
-    @RequestMapping("/")
+    private final MarcaService marcaService;
+    private final ModeloService modeloService;
+    private final VeiculoService veiculoService;
+
+    public HomePageController(MarcaService marcaService, ModeloService modeloService, VeiculoService veiculoService) {
+        this.marcaService = marcaService;
+        this.modeloService = modeloService;
+        this.veiculoService = veiculoService;
+    }
+
+    @GetMapping("/")
     public ModelAndView index() {
         ModelAndView model = new ModelAndView("index");
 
