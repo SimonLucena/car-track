@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Price Tracker</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- fragmento 'layout' que envolve sidebar + main -->
+<div class="container-fluid" layout:fragment="layout">
+    <div class="row">
+        <!-- Sidebar fixo -->
+        <nav class="col-md-3 col-lg-2 sidebar d-md-flex flex-column">
+            <div>
+                <div class="sidebar-header">
+                    <h6 class="ms-3">CAR PRICE TRACKER</h6>
+                    <span class="ms-3 mt-5 d-block menu-text">Menu</span>
+                </div>
+
+                <div class="nav-links">
+                    <a th:href="@{/}"><i class="fas fa-home me-2"></i>Início</a>
+                    <a th:href="@{/marcas-lista}"><i class="fas fa-car me-2"></i>Marcas</a>
+<!--                    <a th:href="@{/modelos-lista}"><i class="fas fa-cogs me-2"></i>Modelos</a>-->
+                    <a th:href="@{/}" class="disabled"><i class="fas fa-cogs me-2"></i>Modelos</a>
+                </div>
+            </div>
+
+            <div class="sidebar-footer mt-auto">
+                &copy; 2025 Car Price Tracker
+            </div>
+        </nav>
+
+        <!-- espaço para o conteúdo de cada página -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 main-content"
+              layout:fragment="content">
+            <!-- será preenchido por cada view -->
+        </main>
+    </div>
+</div>
+
+</body>
+</html>

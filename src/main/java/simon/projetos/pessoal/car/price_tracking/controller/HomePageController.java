@@ -1,30 +1,24 @@
 package simon.projetos.pessoal.car.price_tracking.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 import simon.projetos.pessoal.car.price_tracking.entity.Marca;
 import simon.projetos.pessoal.car.price_tracking.entity.Modelo;
 import simon.projetos.pessoal.car.price_tracking.entity.Veiculo;
 import simon.projetos.pessoal.car.price_tracking.service.MarcaService;
 import simon.projetos.pessoal.car.price_tracking.service.ModeloService;
 import simon.projetos.pessoal.car.price_tracking.service.VeiculoService;
-
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-// Criar um metodo para marcas selecionadas
-// Buscar por anos por marca selecionada
-// Buscar por modelos por ano selecionado
-// Mostra os dados dos modelos daquele ano
-
-@RestController
+@Controller
 public class HomePageController {
-    // MarcaService marcaService = new MarcaService();
-    // ModeloService modeloService = new ModeloService(marcaService);
-    // VeiculoService veiculoService = new VeiculoService(modeloService);
-
     private final MarcaService marcaService;
     private final ModeloService modeloService;
     private final VeiculoService veiculoService;
@@ -36,17 +30,33 @@ public class HomePageController {
     }
 
     @GetMapping("/")
-    public ModelAndView index() {
-        ModelAndView model = new ModelAndView("index");
-
-        List<Marca> marcas = marcaService.getMarcas();
-        model.addObject("marcas", marcas);
-
-        List<Modelo> modelos = modeloService.getModelos();
-        model.addObject("modelos", modelos);
-
-        return model;
+    public String index(Model model) {
+        model.addAttribute("marcas",  marcaService.getMarcas());
+        model.addAttribute("modelos", modeloService.getModelos());
+        return "index";
     }
+
+    @GetMapping("/marcas-lista")
+    public String marcas(Model model) {
+        List<Marca> marcas = marcaService.getMarcas();
+
+        Map<String, Long> qtdVeiculos = marcas.stream()
+                .collect(Collectors.toMap(
+                        Marca::getCodigo,
+                        m -> veiculoService.countVeiculosByMarca(m.getCodigo())
+                ));
+
+        model.addAttribute("marcas", marcas);
+        model.addAttribute("qtdVeiculos", qtdVeiculos);
+        return "marcas";
+    }
+
+    @GetMapping("/modelos-lista")
+    public String modelos(Model model) {
+        model.addAttribute("modelos", modeloService.getModelos());
+        return "modelos";
+    }
+
     @GetMapping("/modelos/{codigoMarca}")
     public ResponseEntity<List<Modelo>> getModelosByMarca(@PathVariable String codigoMarca) {
         List<Modelo> modelos = modeloService.getModelosByMarcaCodigo(codigoMarca);

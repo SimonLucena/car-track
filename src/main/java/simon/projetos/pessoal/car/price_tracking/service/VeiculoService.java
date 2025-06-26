@@ -1,83 +1,47 @@
 package simon.projetos.pessoal.car.price_tracking.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import simon.projetos.pessoal.car.price_tracking.datasourse.DataFetcher;
+import simon.projetos.pessoal.car.price_tracking.entity.Marca;
+import simon.projetos.pessoal.car.price_tracking.entity.Modelo;
 import simon.projetos.pessoal.car.price_tracking.entity.Veiculo;
 import simon.projetos.pessoal.car.price_tracking.repository.VeiculoRepository;
-import simon.projetos.pessoal.car.price_tracking.service.coleta.DataFetcher;
-import simon.projetos.pessoal.car.price_tracking.service.coleta.JsonDataFetcher;
-
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class VeiculoService {
     private final ModeloService modeloService;
     private final VeiculoRepository veiculoRepository;
     private final DataFetcher dataFetcher;
+    private final MarcaService marcaService;
 
-    public VeiculoService(ModeloService modeloService) {
-        this.modeloService = modeloService;
-        this.veiculoRepository = new VeiculoRepository();
-        this.dataFetcher = new JsonDataFetcher();
-        gerarVeiculosIniciais();
+    @PostConstruct
+    void init() throws IOException {
+        JsonNode raiz = dataFetcher.getMock().path("veiculos");  // map<chave, objeto>
+
+        raiz.fields().forEachRemaining((Map.Entry<String,JsonNode> e) -> {
+
+            String chave         = e.getKey();     // ex.: "1001-2022-1"
+            JsonNode vNode       = e.getValue();   // objeto do veículo
+            String codigoModelo  = chave.split("-")[0];  // "1001"
+
+            Modelo modelo = modeloService.getModeloByCodigo(codigoModelo);
+            if (modelo == null) return;            // ignora se modelo não existe
+
+            veiculoRepository.add(jsonToVeiculo(vNode, modelo));
+        });
     }
 
-    private void gerarVeiculosIniciais(){
-        veiculoRepository.add(new Veiculo("0010010", modeloService.getModeloByCodigo("1001"),
-                2022, "Gasolina", "G", 1, new BigDecimal("42500.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0010011", modeloService.getModeloByCodigo("1001"),
-                2021, "Gasolina", "G", 1, new BigDecimal("41000.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0010012", modeloService.getModeloByCodigo("1001"),
-                2020, "Gasolina", "G", 1, new BigDecimal("39700.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0010020", modeloService.getModeloByCodigo("1002"),
-                2022, "Flex", "F", 1, new BigDecimal("45500.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0010021", modeloService.getModeloByCodigo("1002"),
-                2021, "Flex", "F", 1, new BigDecimal("44000.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0010022", modeloService.getModeloByCodigo("1002"),
-                2020, "Flex", "F", 1, new BigDecimal("42600.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0020010", modeloService.getModeloByCodigo("2001"),
-                2022, "Gasolina", "G", 1, new BigDecimal("48000.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0020011", modeloService.getModeloByCodigo("2001"),
-                2021, "Gasolina", "G", 1, new BigDecimal("46500.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0020012", modeloService.getModeloByCodigo("2001"),
-                2020, "Gasolina", "G", 1, new BigDecimal("45200.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0020020", modeloService.getModeloByCodigo("2002"),
-                2022, "Flex", "F", 1, new BigDecimal("51500.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0020021", modeloService.getModeloByCodigo("2002"),
-                2021, "Flex", "F", 1, new BigDecimal("50000.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0020022", modeloService.getModeloByCodigo("2002"),
-                2020, "Flex", "F", 1, new BigDecimal("48600.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0030010", modeloService.getModeloByCodigo("3001"),
-                2022, "Gasolina", "G", 1, new BigDecimal("53000.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0030011", modeloService.getModeloByCodigo("3001"),
-                2021, "Gasolina", "G", 1, new BigDecimal("51500.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0030012", modeloService.getModeloByCodigo("3001"),
-                2020, "Gasolina", "G", 1, new BigDecimal("50000.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0030020", modeloService.getModeloByCodigo("3002"),
-                2022, "Flex", "F", 1, new BigDecimal("49000.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0030021", modeloService.getModeloByCodigo("3002"),
-                2021, "Flex", "F", 1, new BigDecimal("47500.00"), "maio de 2024"));
-
-        veiculoRepository.add(new Veiculo("0030022", modeloService.getModeloByCodigo("3002"),
-                2020, "Flex", "F", 1, new BigDecimal("46200.00"), "maio de 2024"));
-    }
     public List<Veiculo> getVeiculos(){
         return veiculoRepository.getVeiculos();
     }
@@ -90,5 +54,48 @@ public class VeiculoService {
             }
         }
         return veiculosRetorno;
+    }
+
+    private Veiculo jsonToVeiculo(JsonNode v, Modelo m){
+        String valorStr = v.get("valor").asText()
+                .replaceAll("[R$\\s\\.]", "")
+                .replace(',', '.');
+        return new Veiculo(
+                v.get("codigoFipe").asText(),
+                m,
+                v.get("anoModelo").asInt(),
+                v.get("combustivel").asText(),
+                v.get("siglaCombustivel").asText(),
+                v.get("tipoVeiculo").asInt(),
+                new BigDecimal(valorStr),
+                v.get("mesReferencia").asText()
+        );
+    }
+
+    public long countVeiculosByMarca(String m) {
+        return veiculoRepository.getVeiculos().stream()
+                .filter(v -> v.getModelo()
+                        .getMarca()
+                        .getCodigo()
+                        .equals(m))
+                .count();
+    }
+
+    public BigDecimal mediaPrecoPorMarca(String codigoMarca) {
+        return veiculoRepository.getVeiculos().stream()
+                .filter(v -> v.getModelo().getMarca().getCodigo().equals(codigoMarca))
+                .map(Veiculo::getValor)                // BigDecimal
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                .divide(BigDecimal.valueOf(
+                        countVeiculosByMarca(codigoMarca)), RoundingMode.HALF_UP);
+    }
+
+    public Map<String, BigDecimal> mediasTodasAsMarcas() {
+        return marcaService.getMarcas().stream()
+                .collect(Collectors.toMap(
+                        Marca::getNome,
+                        m -> mediaPrecoPorMarca(m.getCodigo()),
+                        (a,b) -> a
+                ));
     }
 }

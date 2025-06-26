@@ -1,338 +1,441 @@
 {
   "marcas": [
-    {
-      "codigo": "001",
-      "nome": "Fiat"
-    },
-    {
-      "codigo": "002",
-      "nome": "Volkswagen"
-    },
-    {
-      "codigo": "003",
-      "nome": "Chevrolet"
-    },
-    {
-      "codigo": "004",
-      "nome": "Renault"
-    }
+    { "codigo": "001", "nome": "Fiat" },
+    { "codigo": "002", "nome": "Volkswagen" },
+    { "codigo": "003", "nome": "Chevrolet" },
+    { "codigo": "004", "nome": "Ford" }
   ],
+
   "modelos": {
     "001": [
-      {
-        "codigo": "1001",
-        "nome": "Uno"
-      },
-      {
-        "codigo": "1002",
-        "nome": "Palio"
-      }
+      { "codigo": "1001", "nome": "Uno"   },
+      { "codigo": "1002", "nome": "Argo"  },
+      { "codigo": "1003", "nome": "Pulse" }
     ],
     "002": [
-      {
-        "codigo": "2001",
-        "nome": "Gol"
-      },
-      {
-        "codigo": "2002",
-        "nome": "Polo"
-      }
+      { "codigo": "2001", "nome": "Gol"     },
+      { "codigo": "2002", "nome": "Polo"    },
+      { "codigo": "2003", "nome": "T-Cross" }
     ],
     "003": [
-      {
-        "codigo": "3001",
-        "nome": "Onix"
-      },
-      {
-        "codigo": "3002",
-        "nome": "Celta"
-      }
+      { "codigo": "3001", "nome": "Onix"   },
+      { "codigo": "3002", "nome": "Tracker"},
+      { "codigo": "3003", "nome": "Cruze"  }
+    ],
+    "004": [
+      { "codigo": "4001", "nome": "Ka"       },
+      { "codigo": "4002", "nome": "EcoSport" },
+      { "codigo": "4003", "nome": "Ranger"   }
     ]
   },
-  "anos": {
-    "1001": [
-      {
-        "codigo": "2022-1",
-        "nome": "2022 Gasolina"
-      },
-      {
-        "codigo": "2021-1",
-        "nome": "2021 Gasolina"
-      },
-      {
-        "codigo": "2020-1",
-        "nome": "2020 Gasolina"
-      }
-    ],
-    "1002": [
-      {
-        "codigo": "2022-1",
-        "nome": "2022 Flex"
-      },
-      {
-        "codigo": "2021-1",
-        "nome": "2021 Flex"
-      },
-      {
-        "codigo": "2020-1",
-        "nome": "2020 Flex"
-      }
-    ],
-    "2001": [
-      {
-        "codigo": "2022-1",
-        "nome": "2022 Flex"
-      },
-      {
-        "codigo": "2021-1",
-        "nome": "2021 Flex"
-      },
-      {
-        "codigo": "2020-1",
-        "nome": "2020 Flex"
-      }
-    ],
-    "2002": [
-      {
-        "codigo": "2022-1",
-        "nome": "2022 Gasolina"
-      },
-      {
-        "codigo": "2021-1",
-        "nome": "2021 Gasolina"
-      },
-      {
-        "codigo": "2020-1",
-        "nome": "2020 Gasolina"
-      }
-    ],
-    "3001": [
-      {
-        "codigo": "2022-1",
-        "nome": "2022 Flex"
-      },
-      {
-        "codigo": "2021-1",
-        "nome": "2021 Flex"
-      },
-      {
-        "codigo": "2020-1",
-        "nome": "2020 Flex"
-      }
-    ],
-    "3002": [
-      {
-        "codigo": "2022-1",
-        "nome": "2022 Gasolina"
-      },
-      {
-        "codigo": "2021-1",
-        "nome": "2021 Gasolina"
-      },
-      {
-        "codigo": "2020-1",
-        "nome": "2020 Gasolina"
-      }
-    ]
-  },
+
   "veiculos": {
-    "1001-2022-1": {
-      "valor": "R$ 42.500,00",
-      "marca": "Fiat",
-      "modelo": "Uno",
-      "anoModelo": 2022,
-      "combustivel": "Gasolina",
-      "codigoFipe": "0010010",
-      "mesReferencia": "maio de 2024",
-      "tipoVeiculo": 1,
-      "siglaCombustivel": "G"
-    },
     "1001-2021-1": {
-      "valor": "R$ 41.000,00",
+      "valor": "R$ 46.393,00",
       "marca": "Fiat",
       "modelo": "Uno",
       "anoModelo": 2021,
       "combustivel": "Gasolina",
-      "codigoFipe": "0010011",
-      "mesReferencia": "maio de 2024",
+      "codigoFipe": "100121",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
       "siglaCombustivel": "G"
     },
-    "1001-2020-1": {
-      "valor": "R$ 39.700,00",
+    "1001-2022-1": {
+      "valor": "R$ 52.117,00",
       "marca": "Fiat",
       "modelo": "Uno",
-      "anoModelo": 2020,
+      "anoModelo": 2022,
+      "combustivel": "Etanol",
+      "codigoFipe": "100122",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "E"
+    },
+    "1001-2023-1": {
+      "valor": "R$ 55.866,00",
+      "marca": "Fiat",
+      "modelo": "Uno",
+      "anoModelo": 2023,
+      "combustivel": "Flex",
+      "codigoFipe": "100123",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "F"
+    },
+
+    "1002-2021-1": {
+      "valor": "R$ 70.514,00",
+      "marca": "Fiat",
+      "modelo": "Argo",
+      "anoModelo": 2021,
       "combustivel": "Gasolina",
-      "codigoFipe": "0010012",
-      "mesReferencia": "maio de 2024",
+      "codigoFipe": "100221",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
       "siglaCombustivel": "G"
     },
     "1002-2022-1": {
-      "valor": "R$ 45.500,00",
+      "valor": "R$ 74.232,00",
       "marca": "Fiat",
-      "modelo": "Palio",
+      "modelo": "Argo",
       "anoModelo": 2022,
+      "combustivel": "Etanol",
+      "codigoFipe": "100222",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "E"
+    },
+    "1002-2023-1": {
+      "valor": "R$ 78.601,00",
+      "marca": "Fiat",
+      "modelo": "Argo",
+      "anoModelo": 2023,
       "combustivel": "Flex",
-      "codigoFipe": "0010020",
-      "mesReferencia": "maio de 2024",
+      "codigoFipe": "100223",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
       "siglaCombustivel": "F"
     },
-    "1002-2021-1": {
-      "valor": "R$ 44.000,00",
+
+    "1003-2021-1": {
+      "valor": "R$ 90.438,00",
       "marca": "Fiat",
-      "modelo": "Palio",
+      "modelo": "Pulse",
       "anoModelo": 2021,
+      "combustivel": "Gasolina",
+      "codigoFipe": "100321",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "G"
+    },
+    "1003-2022-1": {
+      "valor": "R$ 94.705,00",
+      "marca": "Fiat",
+      "modelo": "Pulse",
+      "anoModelo": 2022,
+      "combustivel": "Etanol",
+      "codigoFipe": "100322",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "E"
+    },
+    "1003-2023-1": {
+      "valor": "R$ 98.891,00",
+      "marca": "Fiat",
+      "modelo": "Pulse",
+      "anoModelo": 2023,
       "combustivel": "Flex",
-      "codigoFipe": "0010021",
-      "mesReferencia": "maio de 2024",
+      "codigoFipe": "100323",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
       "siglaCombustivel": "F"
     },
-    "1002-2020-1": {
-      "valor": "R$ 42.600,00",
-      "marca": "Fiat",
-      "modelo": "Palio",
-      "anoModelo": 2020,
-      "combustivel": "Flex",
-      "codigoFipe": "0010022",
-      "mesReferencia": "maio de 2024",
+
+    "2001-2021-1": {
+      "valor": "R$ 53.467,00",
+      "marca": "Volkswagen",
+      "modelo": "Gol",
+      "anoModelo": 2021,
+      "combustivel": "Gasolina",
+      "codigoFipe": "200121",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
-      "siglaCombustivel": "F"
+      "siglaCombustivel": "G"
     },
     "2001-2022-1": {
-      "valor": "R$ 48.000,00",
+      "valor": "R$ 57.168,00",
       "marca": "Volkswagen",
       "modelo": "Gol",
       "anoModelo": 2022,
-      "combustivel": "Gasolina",
-      "codigoFipe": "0020010",
-      "mesReferencia": "maio de 2024",
+      "combustivel": "Etanol",
+      "codigoFipe": "200122",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
-      "siglaCombustivel": "G"
+      "siglaCombustivel": "E"
     },
-    "2001-2021-1": {
-      "valor": "R$ 46.500,00",
+    "2001-2023-1": {
+      "valor": "R$ 60.892,00",
       "marca": "Volkswagen",
       "modelo": "Gol",
+      "anoModelo": 2023,
+      "combustivel": "Flex",
+      "codigoFipe": "200123",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "F"
+    },
+
+    "2002-2021-1": {
+      "valor": "R$ 78.135,00",
+      "marca": "Volkswagen",
+      "modelo": "Polo",
       "anoModelo": 2021,
       "combustivel": "Gasolina",
-      "codigoFipe": "0020011",
-      "mesReferencia": "maio de 2024",
-      "tipoVeiculo": 1,
-      "siglaCombustivel": "G"
-    },
-    "2001-2020-1": {
-      "valor": "R$ 45.200,00",
-      "marca": "Volkswagen",
-      "modelo": "Gol",
-      "anoModelo": 2020,
-      "combustivel": "Gasolina",
-      "codigoFipe": "0020012",
-      "mesReferencia": "maio de 2024",
+      "codigoFipe": "200221",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
       "siglaCombustivel": "G"
     },
     "2002-2022-1": {
-      "valor": "R$ 51.500,00",
+      "valor": "R$ 82.409,00",
       "marca": "Volkswagen",
       "modelo": "Polo",
       "anoModelo": 2022,
+      "combustivel": "Etanol",
+      "codigoFipe": "200222",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "E"
+    },
+    "2002-2023-1": {
+      "valor": "R$ 86.187,00",
+      "marca": "Volkswagen",
+      "modelo": "Polo",
+      "anoModelo": 2023,
       "combustivel": "Flex",
-      "codigoFipe": "0020020",
-      "mesReferencia": "maio de 2024",
+      "codigoFipe": "200223",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
       "siglaCombustivel": "F"
     },
-    "2002-2021-1": {
-      "valor": "R$ 50.000,00",
+
+    "2003-2021-1": {
+      "valor": "R$ 115.674,00",
       "marca": "Volkswagen",
-      "modelo": "Polo",
+      "modelo": "T-Cross",
       "anoModelo": 2021,
+      "combustivel": "Gasolina",
+      "codigoFipe": "200321",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "G"
+    },
+    "2003-2022-1": {
+      "valor": "R$ 120.497,00",
+      "marca": "Volkswagen",
+      "modelo": "T-Cross",
+      "anoModelo": 2022,
+      "combustivel": "Etanol",
+      "codigoFipe": "200322",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "E"
+    },
+    "2003-2023-1": {
+      "valor": "R$ 125.112,00",
+      "marca": "Volkswagen",
+      "modelo": "T-Cross",
+      "anoModelo": 2023,
       "combustivel": "Flex",
-      "codigoFipe": "0020021",
-      "mesReferencia": "maio de 2024",
+      "codigoFipe": "200323",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
       "siglaCombustivel": "F"
     },
-    "2002-2020-1": {
-      "valor": "R$ 48.600,00",
-      "marca": "Volkswagen",
-      "modelo": "Polo",
-      "anoModelo": 2020,
-      "combustivel": "Flex",
-      "codigoFipe": "0020022",
-      "mesReferencia": "maio de 2024",
+
+    "3001-2021-1": {
+      "valor": "R$ 57.985,00",
+      "marca": "Chevrolet",
+      "modelo": "Onix",
+      "anoModelo": 2021,
+      "combustivel": "Gasolina",
+      "codigoFipe": "300121",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
-      "siglaCombustivel": "F"
+      "siglaCombustivel": "G"
     },
     "3001-2022-1": {
-      "valor": "R$ 53.000,00",
+      "valor": "R$ 61.443,00",
       "marca": "Chevrolet",
       "modelo": "Onix",
       "anoModelo": 2022,
-      "combustivel": "Gasolina",
-      "codigoFipe": "0030010",
-      "mesReferencia": "maio de 2024",
+      "combustivel": "Etanol",
+      "codigoFipe": "300122",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
-      "siglaCombustivel": "G"
+      "siglaCombustivel": "E"
     },
-    "3001-2021-1": {
-      "valor": "R$ 51.500,00",
+    "3001-2023-1": {
+      "valor": "R$ 64.908,00",
       "marca": "Chevrolet",
       "modelo": "Onix",
+      "anoModelo": 2023,
+      "combustivel": "Flex",
+      "codigoFipe": "300123",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "F"
+    },
+
+    "3002-2021-1": {
+      "valor": "R$ 117.022,00",
+      "marca": "Chevrolet",
+      "modelo": "Tracker",
       "anoModelo": 2021,
       "combustivel": "Gasolina",
-      "codigoFipe": "0030011",
-      "mesReferencia": "maio de 2024",
-      "tipoVeiculo": 1,
-      "siglaCombustivel": "G"
-    },
-    "3001-2020-1": {
-      "valor": "R$ 50.000,00",
-      "marca": "Chevrolet",
-      "modelo": "Onix",
-      "anoModelo": 2020,
-      "combustivel": "Gasolina",
-      "codigoFipe": "0030012",
-      "mesReferencia": "maio de 2024",
+      "codigoFipe": "300221",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
       "siglaCombustivel": "G"
     },
     "3002-2022-1": {
-      "valor": "R$ 49.000,00",
+      "valor": "R$ 121.375,00",
       "marca": "Chevrolet",
-      "modelo": "Celta",
+      "modelo": "Tracker",
       "anoModelo": 2022,
+      "combustivel": "Etanol",
+      "codigoFipe": "300222",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "E"
+    },
+    "3002-2023-1": {
+      "valor": "R$ 125.941,00",
+      "marca": "Chevrolet",
+      "modelo": "Tracker",
+      "anoModelo": 2023,
       "combustivel": "Flex",
-      "codigoFipe": "0030020",
-      "mesReferencia": "maio de 2024",
+      "codigoFipe": "300223",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
       "siglaCombustivel": "F"
     },
-    "3002-2021-1": {
-      "valor": "R$ 47.500,00",
+
+    "3003-2021-1": {
+      "valor": "R$ 103.588,00",
       "marca": "Chevrolet",
-      "modelo": "Celta",
+      "modelo": "Cruze",
       "anoModelo": 2021,
+      "combustivel": "Gasolina",
+      "codigoFipe": "300321",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "G"
+    },
+    "3003-2022-1": {
+      "valor": "R$ 107.831,00",
+      "marca": "Chevrolet",
+      "modelo": "Cruze",
+      "anoModelo": 2022,
+      "combustivel": "Etanol",
+      "codigoFipe": "300322",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "E"
+    },
+    "3003-2023-1": {
+      "valor": "R$ 112.447,00",
+      "marca": "Chevrolet",
+      "modelo": "Cruze",
+      "anoModelo": 2023,
       "combustivel": "Flex",
-      "codigoFipe": "0030021",
-      "mesReferencia": "maio de 2024",
+      "codigoFipe": "300323",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
       "siglaCombustivel": "F"
     },
-    "3002-2020-1": {
-      "valor": "R$ 46.200,00",
-      "marca": "Chevrolet",
-      "modelo": "Celta",
-      "anoModelo": 2020,
+
+    "4001-2021-1": {
+      "valor": "R$ 48.912,00",
+      "marca": "Ford",
+      "modelo": "Ka",
+      "anoModelo": 2021,
+      "combustivel": "Gasolina",
+      "codigoFipe": "400121",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "G"
+    },
+    "4001-2022-1": {
+      "valor": "R$ 52.605,00",
+      "marca": "Ford",
+      "modelo": "Ka",
+      "anoModelo": 2022,
+      "combustivel": "Etanol",
+      "codigoFipe": "400122",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "E"
+    },
+    "4001-2023-1": {
+      "valor": "R$ 56.143,00",
+      "marca": "Ford",
+      "modelo": "Ka",
+      "anoModelo": 2023,
       "combustivel": "Flex",
-      "codigoFipe": "0030022",
-      "mesReferencia": "maio de 2024",
+      "codigoFipe": "400123",
+      "mesReferencia": "maio de 2025",
       "tipoVeiculo": 1,
       "siglaCombustivel": "F"
+    },
+
+    "4002-2021-1": {
+      "valor": "R$ 91.235,00",
+      "marca": "Ford",
+      "modelo": "EcoSport",
+      "anoModelo": 2021,
+      "combustivel": "Gasolina",
+      "codigoFipe": "400221",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "G"
+    },
+    "4002-2022-1": {
+      "valor": "R$ 95.672,00",
+      "marca": "Ford",
+      "modelo": "EcoSport",
+      "anoModelo": 2022,
+      "combustivel": "Etanol",
+      "codigoFipe": "400222",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "E"
+    },
+    "4002-2023-1": {
+      "valor": "R$ 99.927,00",
+      "marca": "Ford",
+      "modelo": "EcoSport",
+      "anoModelo": 2023,
+      "combustivel": "Flex",
+      "codigoFipe": "400223",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "F"
+    },
+
+    "4003-2021-1": {
+      "valor": "R$ 179.452,00",
+      "marca": "Ford",
+      "modelo": "Ranger",
+      "anoModelo": 2021,
+      "combustivel": "Diesel",
+      "codigoFipe": "400321",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "D"
+    },
+    "4003-2022-1": {
+      "valor": "R$ 185.799,00",
+      "marca": "Ford",
+      "modelo": "Ranger",
+      "anoModelo": 2022,
+      "combustivel": "Diesel",
+      "codigoFipe": "400322",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "D"
+    },
+    "4003-2023-1": {
+      "valor": "R$ 192.614,00",
+      "marca": "Ford",
+      "modelo": "Ranger",
+      "anoModelo": 2023,
+      "combustivel": "Diesel",
+      "codigoFipe": "400323",
+      "mesReferencia": "maio de 2025",
+      "tipoVeiculo": 1,
+      "siglaCombustivel": "D"
     }
   }
 }
