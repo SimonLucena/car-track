@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--FRAGMENTO DE BUSCA DE VEICULOS 1-->
+<div style="padding: 2em" th:fragment="busca1">
+  <h4 class="mb-4">
+    <i class="fas fa-search me-2 text-secondary"></i>Buscar Carro 1
+  </h4>
+  <form th:action="@{/comparador}" method="get">
+    <input type="hidden" name="card" value="1"/>
+    <div class="row g-3">
+      <label for="marca1" class="form-label">Marca</label>
+      <select class="form-select" id="marca1" name="marca1">
+        <option selected value="0">-- Selecione uma marca --</option>
+        <option th:each="marca : ${marcas}"
+                th:value="${marca.codigo}"
+                th:text="${marca.nome}">
+        </option>
+      </select>
+    </div>
+    <div class="row g-3">
+      <label for="modelo1" class="form-label">Modelo</label>
+      <select class="form-select" id="modelo1" name="codigoModelo" th:object="${modeloSelecionado}" disabled>
+        <option selected value="0">-- Selecione um modelo --</option>
+      </select>
+    </div>
+    <div class="row g-3">
+      <label for="ano1" class="form-label">Ano</label>
+      <select class="form-select" id="ano1" name="codigoAno" th:object="${anoSelecionado}" disabled>
+        <option selected value="0">-- Selecione um ano --</option>
+      </select>
+    </div>
+    <div class="row g-3">
+      <button class="btn btn-primary" type="submit" id="submeter_pesquisa1" disabled>
+        Buscar
+      </button>
+    </div>
+  </form>
+  <!-- Script -->
+  <script src="/js/comparador/busca1.js"></script>
+</div>
+
+
+
+<!--FRAGMENTO DE BUSCA DE VEICULOS 2-->
+<div style="padding: 2em" th:fragment="busca2">
+  <h4 class="mb-4">
+    <i class="fas fa-search me-2 text-secondary"></i>Buscar Carro 2
+  </h4>
+  <form th:action="@{/comparador}" method="get">
+    <input type="hidden" name="card" value="2"/>
+    <div class="row g-3">
+      <label for="marca2" class="form-label">Marca</label>
+      <select class="form-select" id="marca2" name="marca2">
+        <option selected value="0">-- Selecione uma marca --</option>
+        <option th:each="marca : ${marcas}"
+                th:value="${marca.codigo}"
+                th:text="${marca.nome}">
+        </option>
+      </select>
+    </div>
+    <div class="row g-3">
+      <label for="modelo2" class="form-label">Modelo</label>
+      <select class="form-select" id="modelo2" name="codigoModelo" th:object="${modeloSelecionado}" disabled>
+        <option selected value="0">-- Selecione um modelo --</option>
+      </select>
+    </div>
+    <div class="row g-3">
+      <label for="ano2" class="form-label">Ano</label>
+      <select class="form-select" id="ano2" name="codigoAno" th:object="${anoSelecionado}" disabled>
+        <option selected value="0">-- Selecione um ano --</option>
+      </select>
+    </div>
+    <div class="row g-3">
+      <button class="btn btn-primary" type="submit" id="submeter_pesquisa2">
+        Buscar
+      </button>
+    </div>
+  </form>
+  <!-- Script -->
+  <script src="/js/comparador/busca2.js"></script>
+</div>
+
+
+<!--FRAGMENTO DE VEICULOS 1-->
+<div style="padding: 2em" th:fragment="veiculo1"
+     data-chart-seed
+     data-card="1"
+     th:attr="data-modelo-codigo=${veiculo1.modelo.codigo},
+              data-modelo-nome=${veiculo1.modelo.marca.nome} + ' - ' + ${veiculo1.modelo.nome}">
+
+  <h4 class="mb-4" th:text="${veiculo1.modelo.marca.nome}+' - '+${veiculo1.modelo.nome}">
+  </h4>
+  <h5>Ano:</h5>
+  <p th:text="${veiculo1.ano}"></p>
+
+  <h5>Combustivel:</h5>
+  <p th:text="${veiculo1.combustivel}"></p>
+
+  <h5>Valor:</h5>
+  <p th:text="${veiculo1.valor}">R$ </p>
+
+  <div class="row g-3">
+    <a class="btn btn-primary"
+       th:href="@{/comparador/limpar/{veiculo}(veiculo='veiculo1')}">
+      Limpar
+    </a>
+  </div>
+</div>
+
+<!--FRAGMENTO DE VEICULOS 2-->
+<div style="padding: 2em" th:fragment="veiculo2"
+     data-chart-seed
+     data-card="2"
+     th:attr="data-modelo-codigo=${veiculo2.modelo.codigo},
+              data-modelo-nome=${veiculo2.modelo.marca.nome} + ' - ' + ${veiculo2.modelo.nome}">
+
+  <h4 class="mb-4" th:text="${veiculo2.modelo.marca.nome}+' - '+${veiculo2.modelo.nome}">
+  </h4>
+  <h5>Ano:</h5>
+  <p th:text="${veiculo2.ano}"></p>
+
+  <h5>Combustivel:</h5>
+  <p th:text="${veiculo2.combustivel}"></p>
+
+  <h5>Valor:</h5>
+  <p th:text="${veiculo2.valor}">R$ </p>
+
+  <div class="row g-3">
+    <a class="btn btn-primary"
+       th:href="@{/comparador/limpar/{veiculo}(veiculo='veiculo2')}">
+      Limpar
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

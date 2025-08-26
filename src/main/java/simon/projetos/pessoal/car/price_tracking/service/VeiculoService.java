@@ -56,6 +56,26 @@ public class VeiculoService {
         return veiculosRetorno;
     }
 
+    public List<String> getAnosByModeloCodigoid(String codigo) {
+        List<String> anosRetorno = new ArrayList<>();
+
+        for (Veiculo veiculo : veiculoRepository.getVeiculos()) {
+            if (veiculo.getModelo().getCodigo().equals(codigo)){
+                anosRetorno.add(veiculo.getAno().toString());
+            }
+        }
+        return anosRetorno;
+    }
+    public Veiculo getVeiculoByModeloAndAno(String codigoModelo, String codigoAno) {
+        for (Veiculo veiculo : veiculoRepository.getVeiculos()) {
+            if (veiculo.getModelo().getCodigo().equals(codigoModelo)
+                && veiculo.getAno().toString().equals(codigoAno)){
+                return veiculo;
+            }
+        }
+        return null;
+    }
+
     private Veiculo jsonToVeiculo(JsonNode v, Modelo m){
         String valorStr = v.get("valor").asText()
                 .replaceAll("[R$\\s\\.]", "")
@@ -98,4 +118,5 @@ public class VeiculoService {
                         (a,b) -> a
                 ));
     }
+
 }

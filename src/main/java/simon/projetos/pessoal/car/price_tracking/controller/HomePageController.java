@@ -5,14 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import simon.projetos.pessoal.car.price_tracking.entity.Marca;
 import simon.projetos.pessoal.car.price_tracking.entity.Modelo;
 import simon.projetos.pessoal.car.price_tracking.entity.Veiculo;
 import simon.projetos.pessoal.car.price_tracking.service.MarcaService;
 import simon.projetos.pessoal.car.price_tracking.service.ModeloService;
 import simon.projetos.pessoal.car.price_tracking.service.VeiculoService;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -54,7 +52,7 @@ public class HomePageController {
     @GetMapping("/modelos-lista")
     public String modelos(Model model) {
         model.addAttribute("modelos", modeloService.getModelos());
-        return "modelos";
+        return "comparador";
     }
 
     @GetMapping("/modelos/{codigoMarca}")

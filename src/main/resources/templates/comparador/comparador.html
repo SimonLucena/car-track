@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Price Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<section layout:fragment="content">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Comparador</h2>
+    </div>
+
+    <div class="row g-3" style="justify-content: center">
+        <div class="col-md-5">
+            <!-- Card do veiculo 1 -->
+            <div class="d-flex justify-content-center mt-4">
+                <div class="card shadow-sm rounded-4 w-100" style="max-width: 80%;">
+                    <div class="card-body">
+                        <!-- Card 1 -->
+                        <div th:if="${condiction1}">
+                            <div th:replace="comparador/card_body.html :: veiculo1"></div>
+                        </div>
+                        <div th:unless="${condiction1}">
+                            <div th:replace="comparador/card_body.html :: busca1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <!-- Card do veiculo 2 -->
+            <div class="d-flex justify-content-center mt-4">
+                <div class="card shadow-sm rounded-4 w-100" style="max-width: 80%;">
+                    <div class="card-body">
+                        <!-- Card 2 -->
+                        <div th:if="${condiction2}">
+                            <div th:replace="comparador/card_body.html :: veiculo2"></div>
+                        </div>
+                        <div th:unless="${condiction2}">
+                            <div th:replace="comparador/card_body.html :: busca2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gráfico -->
+    <div class="d-flex justify-content-center mt-4"
+         id="grafico-comparador-card" style="display: none;">
+        <div class="card shadow-sm rounded-4 w-100" style="max-width: 80%;">
+            <div class="card-body">
+                <h5 class="mb-3 d-flex justify-content-between align-items-center">
+                    <span>
+                        <i class="fas fa-chart-bar me-2 text-secondary"></i>Preço por Ano
+                    </span>
+                </h5>
+                <canvas id="graficoComparador" height="100"></canvas>
+            </div>
+        </div>
+        <script src="/js/comparador/comparador_chart.js"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</section>
+</body>
+</html>
